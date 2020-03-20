@@ -23,11 +23,11 @@ export const getRecordsByKeyNotification = <TData>(key: string): OperatorFunctio
       const { properties } = notification.value?.get(key) ?? {}
       if (!properties) {
         console.warn(`There are results here, but no result is matched by ${key}`)
-        return {}
+        return
       }
       // * There is an identity property here which I haven't quite figured out yet.
       return {
         ...properties,
       }
-    }),
+    }).filter(props => Boolean(props)),
   )

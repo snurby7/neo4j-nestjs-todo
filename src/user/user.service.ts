@@ -4,10 +4,14 @@ import { CreateUserDto } from './dto/CreateUserDto'
 import { Observable } from 'rxjs'
 import { UserDto } from './dto/UserDto'
 import { createUserQuery } from './queries'
+import { UserNoteSearchDto } from './dto/UserNoteSearchDto'
+import { NoteDto } from '../note/dto/NoteDto'
+import { NoteService } from '../note/note.service'
 
 @Injectable()
 export class UserService {
-  constructor(private neo4jService: Neo4jService) {
+  constructor(private neo4jService: Neo4jService,
+              private noteService: NoteService) {
   }
 
   public createUser(userDto: CreateUserDto): Observable<UserDto> {
@@ -19,4 +23,12 @@ export class UserService {
       ))
   }
 
+
+  public searchNotes(searchRequest: UserNoteSearchDto): Observable<NoteDto[]> {
+    return this.noteService.searchNotes(searchRequest)
+  }
+
+  public getUserNotes(userId: string): Observable<NoteDto[]> {
+    return this.noteService.getUserRelatedNotes(userId)
+  }
 }

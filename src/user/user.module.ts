@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common'
 import { UserService } from './user.service'
 import { UserController } from './user.controller'
-import { Neo4jModule } from '../neo4j/neo4j.module'
+import { Neo4jModule } from '../neo4j'
+import { NoteModule } from '../note/note.module'
 
 @Module({
   providers: [UserService],
   controllers: [UserController],
   imports: [
     Neo4jModule,
+    NoteModule,
   ],
 })
 export class UserModule {
