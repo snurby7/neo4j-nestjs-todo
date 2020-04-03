@@ -1,9 +1,8 @@
-import { Body, Controller, Get, NotImplementedException, Param, Post } from '@nestjs/common'
-import { CreateNoteDto } from './dto/CreateNoteDto'
+import { Body, Controller, Get, Param, Post } from '@nestjs/common'
 import { Observable } from 'rxjs'
-import { NoteDto } from './dto/NoteDto'
 import { NoteService } from './note.service'
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
+import { CreateNoteDto, NoteDto } from '.'
 
 @Controller('note')
 export class NoteController {
@@ -26,7 +25,7 @@ export class NoteController {
     description: 'A single note and its properties and labels',
   })
   public getNoteById(@Param('id') id: string): Observable<NoteDto> {
-    throw new NotImplementedException('TODO')
+    return this.noteService.getNoteById(id)
   }
 
 }

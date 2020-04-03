@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common'
-import { CreateNoteDto } from './dto/CreateNoteDto'
 import { Observable } from 'rxjs'
-import { NoteDto } from './dto/NoteDto'
 import { createNoteQuery, searchNotesQuery, userRelatedNotesQuery } from './queries'
 import { getRecordsByKey, getRecordsByKeyNotification, Neo4jService } from '../neo4j'
-import { NoteSearchDto } from './dto/NoteSearchDto'
 import { materialize, toArray } from 'rxjs/operators'
+import { CreateNoteDto, NoteDto, NoteSearchDto } from './dto'
 
 @Injectable()
 export class NoteService {
@@ -18,8 +16,8 @@ export class NoteService {
     return this.neo4jService.rxSession.writeTransaction(trx =>
       trx.run(statement, props).records().pipe(
         getRecordsByKey<NoteDto>(resultKey),
-      ))
-  }
+        ))
+      }
 
   public searchNotes(request: NoteSearchDto): Observable<NoteDto[]> {
     const resultKey = 'notes'
@@ -28,8 +26,8 @@ export class NoteService {
       materialize(),
       toArray(),
       getRecordsByKeyNotification<NoteDto>(resultKey),
-    ))
-  }
+      ))
+    }
 
   public getUserRelatedNotes(userId: string): Observable<NoteDto[]> {
     const resultKey = 'notes'
@@ -38,6 +36,10 @@ export class NoteService {
       materialize(),
       toArray(),
       getRecordsByKeyNotification<NoteDto>(resultKey),
-    ))
+      ))
+    }
+  public getNoteById(id: string): Observable<NoteDto> {
+    throw new Error("Method not implemented.")
   }
 }
+

@@ -5,6 +5,7 @@
   "author": "",
   "license": "MIT",
   "scripts": {
+    "docs": "compodoc -p tsconfig.json -s",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -31,6 +32,7 @@
     "rxjs": "^6.5.4"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.11",
     "@nestjs/cli": "^7.0.2",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/swagger": "^4.4.0",
@@ -47,6 +49,7 @@
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "supertest": "^4.0.2",
+    "swagger-ui-express": "^4.1.4",
     "ts-jest": "25.2.1",
     "ts-loader": "^6.2.1",
     "ts-node": "^8.6.0",

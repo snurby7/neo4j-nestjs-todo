@@ -1,12 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { getRecordsByKey, Neo4jService } from '../neo4j'
-import { CreateUserDto } from './dto/CreateUserDto'
 import { Observable } from 'rxjs'
-import { UserDto } from './dto/UserDto'
 import { createUserQuery } from './queries'
-import { UserNoteSearchDto } from './dto/UserNoteSearchDto'
-import { NoteDto } from '../note/dto/NoteDto'
-import { NoteService } from '../note/note.service'
+import { NoteService, NoteDto } from '../note'
+import { CreateUserDto, UserDto, UserNoteSearchDto } from './dto'
 
 @Injectable()
 export class UserService {

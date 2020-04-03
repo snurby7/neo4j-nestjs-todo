@@ -1,10 +1,8 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common'
 import { Observable } from 'rxjs'
 import { UserService } from './user.service'
-import { UserDto } from './dto/UserDto'
-import { CreateUserDto } from './dto/CreateUserDto'
-import { UserNoteSearchDto } from './dto/UserNoteSearchDto'
-import { NoteDto } from '../note/dto/NoteDto'
+import { UserDto, CreateUserDto, UserNoteSearchDto } from './dto'
+import { NoteDto } from '../note'
 
 @Controller('user')
 export class UserController {
